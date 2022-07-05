@@ -6,6 +6,10 @@ public class Main {
 		// TODO Auto-generated method stub
 		//test
 		System.out.println("Hello world!");
+		Gui gui = new Gui();
+		
+		gui.startgui();
+		
 
 	}
 
