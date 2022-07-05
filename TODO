@@ -1,8 +1,7 @@
 *figure out the 2 buttons activate thing
-*set up a button to end the application
+*normal key listener in the window itself
 *set up macros      // the app has to hide itself first then paste whatever
-
-
+//
 
 *create multiple frames 
 frames:- Java , python , miscs

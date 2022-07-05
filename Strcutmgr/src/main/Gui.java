@@ -1,4 +1,7 @@
 package main;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
 import com.github.kwhat.jnativehook.GlobalScreen;
@@ -12,15 +15,14 @@ public class Gui  implements NativeKeyListener {
 	JFrame frame2 = new JFrame("My second GUI");
 	
 	void startgui() {
-	frame2.setVisible(false);
-	//GlobalScreen.addNativeKeyListener(null);
-	
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(300,300);
-    GlobalScreen.addNativeKeyListener(new Gui());
-    frame.setVisible(false);
-    frame2.setSize(700, 700);
-   try {
+		
+		frame2.setVisible(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(300,300);
+		GlobalScreen.addNativeKeyListener(new Gui());
+		frame.setVisible(false);
+    
+    	try {
     	GlobalScreen.registerNativeHook();
     	}
     	catch (NativeHookException ex) {
@@ -29,25 +31,31 @@ public class Gui  implements NativeKeyListener {
 
     	System.exit(1);
     	}
-   
-   
-    
 	}
-
-	
 	
 
 	@Override
 	public void nativeKeyPressed(NativeKeyEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getKeyCode() == 29){
-			System.out.println("gottem");
+		if(e.getKeyCode() == 3655){
+			System.out.println("Opening program");
+			frame2.setSize(1000, 700);
+			JLabel label = new JLabel("1. Java"
+					+ "2. python"
+					+ "3. Misc");
+			frame2.add(label);
 			frame2.setVisible(true);
+	
 			
 		}
 		if(e.getKeyCode() == 56){
 			System.out.println("gottem");
 			frame2.setVisible(false);
+			
+		}
+		if(e.getKeyCode() == 3663){
+			System.out.println("closing program");
+			System.exit(0);
 			
 		}
 		
@@ -65,5 +73,11 @@ public class Gui  implements NativeKeyListener {
 		
 			System.out.println("code is " + e.getKeyCode());
 	}
+	public void clippo(String string) { //copy to clipord method: copies whichever string you give it to the clippord
+		StringSelection selection = new StringSelection(string);
+		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		clipboard.setContents(selection, selection);
+	}
+
 
 }
